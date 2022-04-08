@@ -10,6 +10,7 @@ class Map:
         self.tile_size = tile_size
         self.map = [["-" for x in range(width)] for y in range(height)]
         self.mine_num = int(width*height*mine_percent)
+        self.bomb = []
         self.generate_bomb()
         """
         * = bomb
@@ -25,6 +26,7 @@ class Map:
         self.nothing_alternate_color = (229,194,159)
         self.num_color = [(25,118,210),(57,142,61),(211,47,47),(123,31,162),(255,143,0),(72,230,241),(255,191,0),(73,39,4)]
         self.font = pygame.font.SysFont("Comic sans", int(self.tile_size//1.2))
+        
 
     def generate_bomb(self):
         for i in range(self.mine_num):
@@ -32,6 +34,7 @@ class Map:
             y = random.randint(0, self.height - 1)
             if self.map[y][x] != "*":
                 self.map[y][x] = "*"
+                self.bomb.append((x, y))
             else:
                 i -= 1
 

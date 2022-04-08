@@ -68,11 +68,14 @@ def main():
                         win = False
                     else:
                         player_map.check_bomb(mouse_tile[0],mouse_tile[1])
-                # elif click[2]: 
-                #     if player_map.map[mouse_tile[1]][mouse_tile[0]] == "-":
-                #         player_map.map[mouse_tile[1]][mouse_tile[0]] = "f" 
-                #     elif player_map.map[mouse_tile[1]][mouse_tile[0]] == "f":
-                #         player_map.map[mouse_tile[1]][mouse_tile[0]] = "-" 
+                elif click[2]: 
+                    if player_map.map[mouse_tile[1]][mouse_tile[0]] == "-" or player_map.map[mouse_tile[1]][mouse_tile[0]] == "*":
+                        player_map.map[mouse_tile[1]][mouse_tile[0]] = "f" 
+                    elif player_map.map[mouse_tile[1]][mouse_tile[0]] == "f":
+                        if (mouse_tile[0],mouse_tile[1])in player_map.bomb:
+                            player_map.map[mouse_tile[1]][mouse_tile[0]] = "*"
+                        else:
+                            player_map.map[mouse_tile[1]][mouse_tile[0]] = "-" 
                 draw(SCREEN, player_map)
 
 
